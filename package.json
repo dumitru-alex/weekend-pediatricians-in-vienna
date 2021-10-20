@@ -1,0 +1,27 @@
+{
+  "name": "weekend-pediatricians-in-vienna",
+  "version": "0.1.0",
+  "description": "A web server that keeps up to date list of pediatric doctors available during weekends in Vienna",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "start": "node ./build/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumitru-alex/weekend-pediatricians-in-vienna.git"
+  },
+  "author": "Alex Dumitru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dumitru-alex/weekend-pediatricians-in-vienna/issues"
+  },
+  "homepage": "https://github.com/dumitru-alex/weekend-pediatricians-in-vienna#readme",
+  "dependencies": {
+    "fastify": "^3.22.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.1"
+  }
+}
