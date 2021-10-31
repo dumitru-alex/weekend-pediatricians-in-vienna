@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/dumitru-alex/weekend-pediatricians-in-vienna#readme",
   "dependencies": {
-    "fastify": "^3.22.1"
+    "axios": "^0.24.0",
+    "fastify": "^3.22.1",
+    "pdf2json": "^1.2.5"
   },
   "devDependencies": {
     "@types/node": "^16.11.1"
