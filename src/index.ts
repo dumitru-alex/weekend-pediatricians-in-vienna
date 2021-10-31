@@ -15,28 +15,28 @@ server.get('/doctors', async (_request, _reply) => {
   // Entry starts with 'Gruppenpraxis' or 'Praxis'
   let recordHeader = false;
   let header: string[] = [];
-  
+
   let recordEntry = false;
   let entries: string[] = [];
   let entry = new Set();
-  
+
   for (let page of rawJsonData.formImage.Pages) {
     for (let text of (page as any)['Texts']) {
       const textValue = decodeURI((text as any)['R'][0]['T'])
         .trim()
         .replace('%26', '&');
       if (textValue === 'Ordination') recordHeader = true;
-  
+
       if (recordHeader) {
         header.push(textValue);
       }
-  
+
       if (textValue === 'Tel') recordHeader = false;
-  
+
       const isFirstWordForEntry =
         textValue === 'Praxis' || textValue === 'Gruppenpraxis';
       if (isFirstWordForEntry) recordEntry = true;
-  
+
       if (recordEntry) {
         if (entry.size > 0 && isFirstWordForEntry) {
           entries.push(Array.from(entry.values()).join(','));
@@ -48,9 +48,13 @@ server.get('/doctors', async (_request, _reply) => {
       }
     }
   }
-  return { data: parseEntry(entries[0]!).values() };
-});
 
+  const finalData = entries.reduce((acc, cur, _idx) => {
+    acc.push(Object.fromEntries(parseEntry(cur).entries()));
+    return acc;
+  }, [] as any[]);
+  return { data: finalData };
+});
 
 function parseEntry(entry: string) {
   const listOfWords = entry.split(',');
